@@ -9,10 +9,27 @@ This repository hosts a cleanly architected **OrderService** microservice using 
 This project follows the **Clean Architecture** approach to maintain separation of concerns and long-term scalability:
 
 src/
-├── Core/ # Domain models & interfaces
-├── Application/ # CQRS handlers, DTOs, business logic
-├── Infrastructure/ # Redis, Kafka, HTTP clients, Persistence
-├── WebAPI/ # REST API and DI setup
+├── Core/                # 🧠 Domain layer - business entities and interfaces
+│   ├── Entities/        #   - Order and related domain models
+│   └── Interfaces/      #   - Abstractions like IOrderRepository, IKafkaProducer
+│
+├── Application/         # ⚙️ Application layer - business use cases & CQRS logic
+│   ├── DTOs/            #   - Data transfer objects
+│   ├── Interfaces/      #   - Abstractions to decouple infrastructure
+│   └── Features/
+│       └── Orders/      #   - CQRS commands, queries, and handlers for orders
+│           ├── Commands/
+│           └── Queries/
+│
+├── Infrastructure/      # 🏗️ Infrastructure layer - external service implementations
+│   ├── Kafka/           #   - Kafka producer logic using Confluent.Kafka
+│   ├── Persistence/     #   - EF Core DbContext and repository implementation
+│   └── Services/        #   - NotificationService implementation using HttpClient + Polly
+│
+├── WebAPI/              # 🌐 API layer - HTTP endpoints and DI setup
+    ├── Controllers/     #   - OrdersController and mock NotificationsController
+    └── Program.cs       #   - Application entry point and service registration
+
 
 
 
