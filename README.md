@@ -7,6 +7,7 @@ This repository hosts a cleanly architected **OrderService** microservice using 
 ## 📐 Architecture Overview
 
 This project follows the **Clean Architecture** approach to maintain separation of concerns and long-term scalability:
+
 src/
 ├── Core/ # Domain models & interfaces
 ├── Application/ # CQRS handlers, DTOs, business logic
